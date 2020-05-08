@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Link as LinkRouter } from "@reach/router"
 
 export const Title = styled.h1`
   font-size: 30px;
@@ -10,6 +11,10 @@ export const Search = styled.div`
   display: flex;
   border-bottom: 3px solid #ccc;
   padding: 30px 0;
+  width: 100%;
+  & form {
+    width: 100%;
+  }
 `
 
 export const Input = styled.input`
@@ -19,6 +24,7 @@ export const Input = styled.input`
   outline: none;
   margin-right: 50px;
   font-size: 18px;
+  width: 50%;
 `
 
 export const Button = styled.button`
@@ -39,7 +45,7 @@ export const Button = styled.button`
   `}
 `
 
-export const Link = styled.a`
+export const Link = styled(LinkRouter)`
   text-decoration: none;
   border: none;
   border-bottom: 1px solid #ccc;
