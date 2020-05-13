@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from '../styles'
 
 const Wrapper = styled.div`
   display: grid;
@@ -54,7 +55,7 @@ export const Layout = ({ children }) => (
       <Logo src="https://externalstorageaccount.blob.core.windows.net/recursos/img/auralogo.png" alt="logo" />
       <Menu>
         <MenuItem>Inicio</MenuItem>
-        <MenuItem>Reportes</MenuItem>
+        <MenuItem><Link to='/'>Reportes</Link></MenuItem>
       </Menu>
     </SideBar>
     <Content>

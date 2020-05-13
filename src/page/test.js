@@ -4,48 +4,55 @@ import { Search, Input, Button, Title, Table, Link, Td, Th } from '../styles';
 import ViewerPdf from '../components/ViewerPdf'
 
 function DetailTestPacient({label, hospital}) {
-    let email = "";
-    const [ urlPdf , seturlPdf ] = useState([])
+    
+    const [ urlPdf , seturlPdf ] = useState(null)
+    const [email, setEmail] = useState("")
     useEffect(() => {
-      fetch('http://localhost:8000/api/azure/buscar', {
-        method: 'POST',
-        body:  JSON.stringify({
-            hospital: hospital,
-            label: label
-          })
-        }).then(res => res.json())
+      fetch(`https://aura-analyzer-server.herokuapp.com/api/azure/buscar/${label}/${hospital}`).then(res => res.json())
           .then(response => {
               console.log(response)
             seturlPdf(response.data)
           })
     }, [])
 
-    useEffect(() => {
-        fetch('http://localhost:8000/api/mail', {
+    const sendEmail = (e) => {
+        e.preventDefault();
+        debugger;
+        const data = {
+            email: email,
+            hospital: hospital,
+            labelPaciente: label
+        }
+        fetch('https://aura-analyzer-server.herokuapp.com/api/mail', {
           method: 'POST',
-          body:  JSON.stringify({
-              email: email,
-              hospital: hospital,
-              label: label
-            })
-          }).then(res => res.json())
+          body:  JSON.stringify(data),
+          headers:{
+            'Content-Type': 'application/json'
+          }
+        })
+            .then(res => res.json())
             .then(response => {
                 console.log(response)
-              seturlPdf(response.data)
             })
-      }, [])
+    }
+
+    const getEmail = (e) => {
+        const { value } = e.target
+        setEmail(value)
+    }
 
 
   return (
     <Layout>
+      {urlPdf &&
+        <ViewerPdf url={urlPdf.urlPdf}></ViewerPdf>
+      }
         <Search>
-        <form >
-            <Input placeholder='Email' value={email} required ></Input>
+        <form onSubmit={sendEmail}>
+            <Input placeholder='Email' value={email} required type="email" onChange={getEmail}></Input>
             <Button primary type="submit">Enviar</Button>
         </form>
       </Search>
-        <ViewerPdf url={urlPdf.urlPdf}></ViewerPdf>
-
     </Layout>
   );
 }
