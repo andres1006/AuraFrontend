@@ -10,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const { REACT_APP_API_AURA_SERVICES } = process.env;
 
-function ListTests() {
+function ListLogs() {
   const [startDate, setStartDate] = useState(new Date());
   const [ urlPdf , seturlPdf ] = useState([])
   const [ data , setData ] = useState([])
@@ -36,6 +36,7 @@ function ListTests() {
   const handleChange = date => {
     setStartDate(date)
     let dateCheck = moment(date).format("yyyy/MM/DD").toString();
+    console.log(dateCheck);
     const filter = urlPdf.filter(item => {
         let dateItem =  moment(item.fecha).format("yyyy/MM/DD").toString();
         if(dateCheck === dateItem){
@@ -43,7 +44,7 @@ function ListTests() {
         }
         return false
     })
-    //console.log(filter);
+    console.log(filter);
     setData(filter)
   };
 
@@ -55,31 +56,9 @@ function ListTests() {
             <DatePicker selected={startDate} onChange={ handleChange } />           
         </form>
       </Search>
-      <Title>Todas las pruebas</Title>
-      <Table>
-        <thead>
-          <tr>
-            <Th>Paciente</Th>
-            <Th>Fecha</Th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            data.map(pdf => 
-              <tr key={urlPdf}>
-                <Td>{pdf.label}</Td>
-                <Td><Moment format="YYYY/MM/DD" >{pdf.fecha}</Moment></Td>
-                <Td>
-                    <Link secondary="true" to={{pathname:`/detail`, state:{label: pdf.label,hospital: pdf.hospital}}} >Ver</Link>
-                </Td>
-              </tr>
-            )
-          }
-        </tbody>
-      </Table>
+      <h1>LOGS</h1>
     </Layout>
   );
 }
 
-export default ListTests;
+export default ListLogs;

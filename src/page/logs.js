@@ -1,45 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { Layout } from '../components/Layout'
-import { Search, Input, Button } from '../styles';
+import { Search, Input, Button, Title, Table, Link, Td, Th } from '../styles';
 import ViewerPdf from '../components/ViewerPdf'
-import { useLocation } from "react-router-dom";
+
 const { REACT_APP_API_AURA_SERVICES } = process.env;
 
-function DetailTestPacient() {
-  let location = useLocation();
-
+function DetailLogs({label, hospital} ) {
+    
     const [ urlPdf , seturlPdf ] = useState(null)
     const [email, setEmail] = useState("")
-    // useEffect(() => {
-    //   fetch(`${REACT_APP_API_AURA_SERVICES}api/azure/buscar/${label}/${hospital}`)
-    //       .then(res => res.json())
-    //       .then(response => {
-    //         console.log(response)
-    //         seturlPdf(response.data)
-    //       })
-    // }, [])
 
     useEffect(() => {
       fetch(`${REACT_APP_API_AURA_SERVICES}api/azure/buscar`, {
         method: 'POST',
-        body:  JSON.stringify(location.state),
+        body:  JSON.stringify({label, hospital}),
         headers:{
           'Content-Type': 'application/json'
         }
       })
           .then(res => res.json())
           .then(response => {
-            //console.log(response)
+            console.log(response)
             seturlPdf(response.data)
           })
     }, [])
 
     const sendEmail = (e) => {
         e.preventDefault();
+        debugger;
         const data = {
             email: email,
-            hospital: location.state.hospital,
-            labelPaciente: location.state.label
+            hospital: hospital,
+            labelPaciente: label
         }
 
         fetch(`${REACT_APP_API_AURA_SERVICES}api/mail`, {
@@ -51,7 +43,7 @@ function DetailTestPacient() {
         })
           .then(res => res.json())
           .then(response => {
-                //console.log(response)
+                console.log(response)
             })
     }
 
@@ -63,17 +55,9 @@ function DetailTestPacient() {
 
   return (
     <Layout>
-      {urlPdf &&
-        <ViewerPdf url={urlPdf.urlPdf}></ViewerPdf>
-      }
-        <Search>
-        <form onSubmit={sendEmail}>
-            <Input placeholder='Email' value={email} required type="email" onChange={getEmail}></Input>
-            <Button primary type="submit">Enviar</Button>
-        </form>
-      </Search>
+        <h1>Logs details</h1>
     </Layout>
   );
 }
 
-export default DetailTestPacient;
+export default DetailLogs;

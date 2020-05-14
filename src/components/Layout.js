@@ -56,6 +56,7 @@ export const Layout = ({ children }) => (
       <Menu>
         <MenuItem>Inicio</MenuItem>
         <MenuItem><Link to='/'>Reportes</Link></MenuItem>
+        <MenuItem><Link to='/listlogs'>Logs</Link></MenuItem>
       </Menu>
     </SideBar>
     <Content>
