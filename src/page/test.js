@@ -3,7 +3,7 @@ import { Layout } from '../components/Layout'
 import { Search, Input, Button } from '../styles';
 import ViewerPdf from '../components/ViewerPdf'
 import { useLocation } from "react-router-dom";
-const { REACT_APP_API_AURA_SERVICES } = process.env;
+const { REACT_APP_API_AURA_ANALYZER } = process.env;
 
 function DetailTestPacient() {
   let location = useLocation();
@@ -20,7 +20,7 @@ function DetailTestPacient() {
     // }, [])
 
     useEffect(() => {
-      fetch(`${REACT_APP_API_AURA_SERVICES}api/azure/buscar`, {
+      fetch(`${REACT_APP_API_AURA_ANALYZER}api/azure/buscar`, {
         method: 'POST',
         body:  JSON.stringify(location.state),
         headers:{
@@ -42,7 +42,7 @@ function DetailTestPacient() {
             labelPaciente: location.state.label
         }
 
-        fetch(`${REACT_APP_API_AURA_SERVICES}api/mail`, {
+        fetch(`${REACT_APP_API_AURA_ANALYZER}api/mail`, {
           method: 'POST',
           body:  JSON.stringify(data),
           headers:{

@@ -8,7 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
-const { REACT_APP_API_AURA_SERVICES } = process.env;
+const { REACT_APP_API_AURA_ANALYZER } = process.env;
 
 function ListTests() {
   const [startDate, setStartDate] = useState(new Date());
@@ -16,7 +16,7 @@ function ListTests() {
   const [ data , setData ] = useState([])
   
   useEffect(() => {
-    window.fetch(`${REACT_APP_API_AURA_SERVICES}api/azure`)
+    window.fetch(`${REACT_APP_API_AURA_ANALYZER}api/azure`)
         .then(res => res.json())
         .then(response => {
           seturlPdf(response.data)
@@ -67,7 +67,7 @@ function ListTests() {
         <tbody>
           {
             data.map(pdf => 
-              <tr key={urlPdf}>
+              <tr key={pdf.label}>
                 <Td>{pdf.label}</Td>
                 <Td><Moment format="YYYY/MM/DD" >{pdf.fecha}</Moment></Td>
                 <Td>

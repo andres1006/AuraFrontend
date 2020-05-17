@@ -4,7 +4,7 @@ import './App.css';
 import  ListTests  from './page/listTests';
 import  DetailTestPacient  from './page/test';
 import  ListLogs  from './page/listLogs';
-import  DetailLogs  from './page/logs';
+
 
 
 
@@ -21,9 +21,6 @@ function App() {
         </Route>
         <Route  exact path="/listlogs">
           <ListLogs/>
-        </Route>
-        <Route  exact path="/detaillogs">
-          <DetailLogs/>
         </Route>
       </Switch>
     </Router>
