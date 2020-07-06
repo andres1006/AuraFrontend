@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components'
-import { Link } from '../styles'
 
 const Wrapper = styled.div`
   display: grid;
@@ -43,6 +42,8 @@ const MenuItem = styled.li`
   padding: 10px 50px;
   text-decoration: none;
   font-size: 20px;
+  color: #ffffff;
+  font-weight: bold;
 `
 
 export const Layout = ({ children }) => (
@@ -54,12 +55,12 @@ export const Layout = ({ children }) => (
         <MenuItem>Inicio</MenuItem>
         <NavLink exact activeClassName='current' to="/">
           <MenuItem>
-            <Link to='/'>Reportes</Link>
+            Reportes
           </MenuItem>
         </NavLink>
         <NavLink activeClassName='current' to='/listlogs'>
           <MenuItem>
-            <Link to='/listlogs'>Logs</Link>
+            Logs
           </MenuItem>
         </NavLink>
       </Menu>
