@@ -54,6 +54,8 @@ export const Link = styled(LinkRouter)`
   outline: none;
   margin: 0 30px;
   font-size: 18px;
+  color: #ffffff;
+  font-weight: bold;
   ${props => props.primary && css`
     background: #00cdff;
     color: #fff;

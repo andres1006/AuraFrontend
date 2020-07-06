@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components'
 import { Link } from '../styles'
 
@@ -35,12 +36,8 @@ const Logo = styled.img`
 const Menu = styled.ul`
   margin: 0;
   padding: 0;
-  & li:last-child {
-    background: rgba(0, 0, 0, .3);
-    font-weight: bold;
-  }
 `
-const MenuItem = styled.li` 
+const MenuItem = styled.li`
   text-align: left;
   margin: 0;
   padding: 10px 50px;
@@ -55,8 +52,16 @@ export const Layout = ({ children }) => (
       <Logo src="https://externalstorageaccount.blob.core.windows.net/recursos/img/auralogo.png" alt="logo" />
       <Menu>
         <MenuItem>Inicio</MenuItem>
-        <MenuItem><Link to='/'>Reportes</Link></MenuItem>
-        <MenuItem><Link to='/listlogs'>Logs</Link></MenuItem>
+        <NavLink exact activeClassName='current' to="/">
+          <MenuItem>
+            <Link to='/'>Reportes</Link>
+          </MenuItem>
+        </NavLink>
+        <NavLink activeClassName='current' to='/listlogs'>
+          <MenuItem>
+            <Link to='/listlogs'>Logs</Link>
+          </MenuItem>
+        </NavLink>
       </Menu>
     </SideBar>
     <Content>

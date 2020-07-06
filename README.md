@@ -6,6 +6,8 @@ In the project directory, you can run:
 
 ### `npm start`
 
+In local development in the package.json file in the scripts change "start": "node server.js" to "start": "react-scripts start" `do not forget` before uploading the push of changes to the repository leave "start ": "node server.js"
+
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
