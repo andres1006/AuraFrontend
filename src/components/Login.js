@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 const { REACT_APP_OSCANN_ANALYZER } = process.env;
 
@@ -35,55 +35,58 @@ class Login extends Component {
         contrasenia: this.state.Password
       })
     }).then((Response) => Response.json())
-        .then((result) => {
-          if (result.message === `No existe el usuario: ${this.state.Email}`)
-            alert('Usuario Invalido');
-          else
+      .then((result) => {
+        if (result.message === `No existe el usuario: ${this.state.Email}`)
+          alert('Usuario Invalido');
+        else
           window.sessionStorage.setItem('admin', result.user.admin);
-          window.sessionStorage.setItem('usuario', result.user.usuario);
-          window.sessionStorage.setItem('hospital', result.user.hospital);
-          window.sessionStorage.setItem('login', 'true');
-          window.location.href = `${REACT_APP_OSCANN_ANALYZER}/reports`;
-        })
+        window.sessionStorage.setItem('usuario', result.user.usuario);
+        window.sessionStorage.setItem('hospital', result.user.hospital);
+        window.sessionStorage.setItem('login', 'true');
+        window.location.href = `${REACT_APP_OSCANN_ANALYZER}/reports`;
+      })
   }
 
   render() {
     return (
-      <div className="login">
-        <div className="logo">
-          <img src="https://externalstorageaccount.blob.core.windows.net/recursos/img/auralogo.png" alt="logo" />
-        </div>
-        <div className="user">
-          <label className="login-label-user" ><b>Usuario</b></label>
-          <br/>
-          <input
-           onChange={this.Email}
-           className="login-input"
-           type="text"
-           placeholder="Ingrese su correo electronico"
-           required
-          />
-        </div>
-        <br/>
-        <div className="pass">
-          <label className="login-label-pass" ><b>Contraseña</b></label>
-          <br/>
-          <input
-            onChange={this.Password}
-            className="login-input"
-            type="password"
-            placeholder="Ingrese su Contraseña"
-            required
-          />
-        </div>
 
-        <button onClick={this.login} className="btn-login" type="submit">
-          Ingresar
+      <div className="content">
+        <div className="login">
+          <div className="logo">
+            <img src="https://externalstorageaccount.blob.core.windows.net/recursos/img/auralogo.png" alt="logo" />
+          </div>
+          <div className="user">
+            <label className="login-label-user" ><b>Usuario</b></label>
+            <br />
+            <input
+              onChange={this.Email}
+              className="login-input"
+              type="text"
+              placeholder="Ingrese su correo electronico"
+              required
+            />
+          </div>
+          <br />
+          <div className="user">
+            <label className="login-label-pass" ><b>Contraseña</b></label>
+            <br />
+            <input
+              onChange={this.Password}
+              className="login-input"
+              type="password"
+              placeholder="Ingrese su Contraseña"
+              required
+            />
+          </div>
+
+          <button onClick={this.login} className="btn-login" type="submit">
+            Ingresar
         </button>
-        <br/>
-        {/* <div className="btn-forgot-pass" >
+          <br />
+          {/* <div className="btn-forgot-pass" >
           <NavLink to="/forgot-pass"> Restaurar Contraseña</NavLink>
         </div> */}
+        </div>
       </div>
     );
   }
