@@ -6,3 +6,94 @@
   background-color: #495e6f;
   color: #333;
 }
+
+.login, .forgot-pass {
+  padding: 16px;
+  background: #3C4F5E;
+  width: 100%;
+  text-align: center;
+}
+
+.login-input{
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.user, .forgot-pass-title{
+  margin-top: 5%;
+}
+
+.logo{
+  max-width: 180px;
+  margin-top: 30px;
+  margin-left: 41%;
+}
+
+.login-label-user, .login-label-pass{
+  color: #ffffff;
+}
+
+.login-label-user{
+  margin-right: 50px;
+}
+
+.login-label-pass{
+  margin-right: 21px;
+}
+
+.btn-login {
+  background-color: #333;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  margin-top: 20px;
+  border-radius: 8px;
+  margin-bottom: 14%;
+}
+
+.btn-login:hover {
+  opacity: 0.8;
+}
+
+.btn-forgot-pass{
+  margin-top: 20px;
+  margin-bottom: 10%;
+  font-weight: bold;
+}
+
+.btn-inicio{
+  margin-top: 20px;
+  margin-bottom: 16.5%;
+  font-weight: bold;
+}
+
+.btn-forgot-pass a, .btn-inicio a{
+  color: #ffffff;
+}
+
+.forgot-pass-title{
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 27px;
+}
+
+.btn-cerrar-sesion{
+  width: 130px;
+  font-size: 15px;
+  height: 30px;
+  border-radius: 5px;
+  color: #ffffff;
+  font-weight: bold;
+  list-style-type: none;
+}
+
+.btn-cerrar-sesion a{
+  color: #ffffff;
+}

@@ -2,6 +2,8 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components'
 
+const { REACT_APP_OSCANN_ANALYZER } = process.env;
+
 const Wrapper = styled.div`
   display: grid;
   grid-template-areas: "sidebar header"
@@ -45,28 +47,45 @@ const MenuItem = styled.li`
   color: #ffffff;
   font-weight: bold;
 `
+const cerrarSesion = () => {
+  window.sessionStorage.clear();
+  window.location.href = `${REACT_APP_OSCANN_ANALYZER}`;
+}
 
 export const Layout = ({ children }) => (
-  <Wrapper>
-    <Header />
-    <SideBar>
-      <Logo src="https://externalstorageaccount.blob.core.windows.net/recursos/img/auralogo.png" alt="logo" />
-      <Menu>
-        <MenuItem>Inicio</MenuItem>
-        <NavLink exact activeClassName='current' to="/">
-          <MenuItem>
-            Reportes
-          </MenuItem>
-        </NavLink>
-        <NavLink activeClassName='current' to='/listlogs'>
-          <MenuItem>
-            Logs
-          </MenuItem>
-        </NavLink>
-      </Menu>
-    </SideBar>
-    <Content>
-      {children}
-    </Content>
-  </Wrapper>
+  <>
+    <Wrapper>
+      <Header>
+        <div>
+          <h1>Bienvenido: {window.sessionStorage.getItem('usuario')}</h1>
+          <li onClick={cerrarSesion} className="btn-cerrar-sesion"><a>Cerrar Sesion</a></li>
+        </div>
+      </Header>
+      <SideBar>
+        <Logo src="https://externalstorageaccount.blob.core.windows.net/recursos/img/auralogo.png" alt="logo" />
+        <Menu>
+          <MenuItem>Menu</MenuItem>
+          <NavLink exact activeClassName='current' to="/reports">
+            <MenuItem>
+              Reportes
+            </MenuItem>
+          </NavLink>
+          {(() => {
+            if(window.sessionStorage.getItem('admin') === 'true'){;
+              return (
+                <NavLink  activeClassName='current' to='/listlogs'>
+                  <MenuItem>
+                    Logs
+                  </MenuItem>
+                </NavLink>
+              )
+            }
+          })()}
+        </Menu>
+      </SideBar>
+      <Content>
+        {children}
+      </Content>
+    </Wrapper>
+  </>
 )
