@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-const { REACT_APP_OSCANN_ANALYZER } = process.env;
+const { REACT_APP_OSCANN_ANALYZER, REACT_APP_API_AURA_SERVICES } = process.env;
 
 class Login extends Component {
   constructor() {
@@ -24,7 +24,7 @@ class Login extends Component {
   }
 
   login() {
-    fetch('https://aura-service.herokuapp.com/api/user/autenticar', {
+    fetch(`${REACT_APP_API_AURA_SERVICES}/api/user/autenticar`, {
       method: 'post',
       headers: {
         'Accept': 'application/json',
