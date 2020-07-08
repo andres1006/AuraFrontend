@@ -4,12 +4,10 @@ import './App.css';
 import  ListTests  from './page/listTests';
 import  DetailTestPacient  from './page/test';
 import  ListLogs  from './page/listLogs';
-
-
-
+import  Login from './components/Login';
+import  ForgotPassword from './components/forgotPassword';
 
 function App() {
-
   return (
     <Router>
       <Switch>
@@ -22,11 +20,16 @@ function App() {
         <Route  exact path="/listlogs">
           <ListLogs/>
         </Route>
+        <Route  exact path="/login">
+          <Login/>
+        </Route>
+        <Route  exact path="/forgot-pass">
+          <ForgotPassword/>
+        </Route>
       </Switch>
     </Router>
   );
 
 }
-
 
 export default App;

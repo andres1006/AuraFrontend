@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components'
 
@@ -70,3 +70,38 @@ export const Layout = ({ children }) => (
     </Content>
   </Wrapper>
 )
+
+// export const Layout = (props) => {
+//   console.log(props);
+//   console.log(props.Email);
+//   console.log(props.state);
+//   console.log(props.isAdmin);
+
+//   return (
+//     <div className="wrapper">
+//       <div className="header">
+//         <div className="sideBar">
+//           <img className="logo-principal" src="https://externalstorageaccount.blob.core.windows.net/recursos/img/auralogo.png" alt="logo" />
+//           <div className="menu">
+//             <div className="menu-item">
+//               Inicio
+//             </div>
+//             <div>
+//               <NavLink exact activeClassName='current' to="/">
+//                   Reportes
+//               </NavLink>
+//             </div>
+//             <div>
+//               <NavLink activeClassName='current' to='/listlogs'>
+//                 Logs
+//               </NavLink>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//       <Content>
+//         {props.children}
+//       </Content>
+//     </div>
+//   )
+// }

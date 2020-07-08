@@ -14,7 +14,7 @@ function ListTests() {
   const [startDate, setStartDate] = useState(new Date());
   const [ urlPdf , seturlPdf ] = useState([])
   const [ data , setData ] = useState([])
-  
+
   useEffect(() => {
     window.fetch(`${REACT_APP_API_AURA_ANALYZER}api/azure`)
         .then(res => res.json())
@@ -24,8 +24,8 @@ function ListTests() {
         })
   }, [])
 
-  
-  
+
+
   const Filter = (e) => {
     const { value } = e.target
     const filter = urlPdf.filter(item => item.label.toLowerCase().includes(value.toLowerCase()))
@@ -52,7 +52,7 @@ function ListTests() {
       <Search>
         <form>
             <Input placeholder='Filtar por Label Paciente' required onChange={Filter}></Input>
-            <DatePicker selected={startDate} onChange={ handleChange } />           
+            <DatePicker selected={startDate} onChange={ handleChange } />
         </form>
       </Search>
       <Title>Todas las pruebas</Title>
@@ -66,7 +66,7 @@ function ListTests() {
         </thead>
         <tbody>
           {
-            data.map(pdf => 
+            data.map(pdf =>
               <tr key={pdf.label}>
                 <Td>{pdf.label}</Td>
                 <Td><Moment format="YYYY/MM/DD" >{pdf.fecha}</Moment></Td>

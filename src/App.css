@@ -6,3 +6,127 @@
   background-color: #495e6f;
   color: #333;
 }
+
+.login, .forgot-pass {
+  padding: 16px;
+  background: #3C4F5E;
+  width: 100%;
+  text-align: center;
+}
+
+.login-input{
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.user, .forgot-pass-title{
+  margin-top: 7%;
+}
+
+.logo{
+  max-width: 180px;
+  margin-top: 5px;
+  margin-left: 41%;
+}
+
+.login-label-user, .login-label-pass{
+  color: #ffffff;
+}
+
+.login-label-user{
+  margin-right: 50px;
+}
+
+.login-label-pass{
+  margin-right: 21px;
+}
+
+.btn-login {
+  background-color: #333;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.btn-login:hover {
+  opacity: 0.8;
+}
+
+.btn-forgot-pass{
+  margin-top: 20px;
+  margin-bottom: 10%;
+  font-weight: bold;
+}
+
+.btn-inicio{
+  margin-top: 20px;
+  margin-bottom: 16.5%;
+  font-weight: bold;
+}
+
+.btn-forgot-pass a, .btn-inicio a{
+  color: #ffffff;
+}
+
+.forgot-pass-title{
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 27px;
+}
+
+
+
+
+
+/* .wrapper div{
+  display: grid;
+  grid-template-areas: "sidebar header"
+                       "sidebar content";
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 80px 1fr;
+}
+
+.header header{
+  grid-area: header;
+  grid-row: auto;
+  background: #3C4F5E;
+  color: #fff;
+}
+
+.sideBar nav{
+  grid-area: sidebar;
+  height: 100%;
+  min-height: 100vh;
+  background: #3C4F5E;
+  color: #fff;
+  text-align: center;
+}
+
+.logo-principal img{
+  max-width: 180px;
+  margin: 20px 0;
+}
+
+.menu ul{
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item li{
+  text-align: left;
+  margin: 0;
+  padding: 10px 50px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: bold;
+} */

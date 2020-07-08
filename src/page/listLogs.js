@@ -15,7 +15,7 @@ function ListLogs() {
   const [startDate, setStartDate] = useState(new Date());
   const [ dataLogs , setdataLogs ] = useState([])
   const [ data , setData ] = useState([])
-  
+
   useEffect(() => {
     window.fetch(`${REACT_APP_API_AURA_SERVICES}api/log/listarlogs`)
         .then(res => res.json())
@@ -25,8 +25,8 @@ function ListLogs() {
         })
   }, [])
 
-  
-  
+
+
   const Filter = (e) => {
     const { value } = e.target
     const filter = dataLogs.filter(item => item.label.toLowerCase().includes(value.toLowerCase()))
@@ -61,7 +61,7 @@ function ListLogs() {
         <form>
             <Input placeholder='Filtar por Label Paciente' required onChange={Filter}></Input>
             <Input placeholder='Estado' required onChange={FilterEstado}></Input>
-            <DatePicker selected={startDate} onChange={ handleChange } />           
+            <DatePicker selected={startDate} onChange={ handleChange } />
         </form>
       </Search>
       <Title>Logs</Title>
@@ -78,7 +78,7 @@ function ListLogs() {
         </thead>
         <tbody>
           {
-            data.map(log => 
+            data.map(log =>
               <tr key={dataLogs.label}>
                 <Td>{log.label}</Td>
                 <Td>{log.nombreProceso}</Td>
