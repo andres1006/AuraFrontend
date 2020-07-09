@@ -24,6 +24,7 @@ class Login extends Component {
   }
 
   login() {
+    window.sessionStorage.clear();
     fetch(`${REACT_APP_API_AURA_SERVICES}api/user/autenticar`, {
       method: 'post',
       headers: {
@@ -40,10 +41,10 @@ class Login extends Component {
           alert('Usuario Invalido');
         else
           window.sessionStorage.setItem('admin', result.user.admin);
-        window.sessionStorage.setItem('usuario', result.user.usuario);
-        window.sessionStorage.setItem('hospital', result.user.hospital);
-        window.sessionStorage.setItem('login', 'true');
-        window.location.href = `${REACT_APP_OSCANN_ANALYZER}/reports`;
+          window.sessionStorage.setItem('usuario', result.user.usuario);
+          window.sessionStorage.setItem('hospital', result.user.hospital);
+          window.sessionStorage.setItem('login', 'true');
+          window.location.href = `${REACT_APP_OSCANN_ANALYZER}/reports`;
       })
   }
 
