@@ -24,7 +24,7 @@ class Login extends Component {
   }
 
   login() {
-    fetch(`${REACT_APP_API_AURA_SERVICES}/api/user/autenticar`, {
+    fetch(`${REACT_APP_API_AURA_SERVICES}api/user/autenticar`, {
       method: 'post',
       headers: {
         'Accept': 'application/json',
