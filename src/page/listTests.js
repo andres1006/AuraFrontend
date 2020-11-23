@@ -7,31 +7,40 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-
 const { REACT_APP_API_AURA_ANALYZER } = process.env;
 
 function ListTests() {
   const [startDate, setStartDate] = useState(new Date());
   const [ urlPdf , seturlPdf ] = useState([])
   const [ data , setData ] = useState([])
-  
+
   useEffect(() => {
-    window.fetch(`${REACT_APP_API_AURA_ANALYZER}api/azure`)
+    if (window.sessionStorage.getItem('admin') === 'true')
+      window.fetch(`${REACT_APP_API_AURA_ANALYZER}api/azure`)
         .then(res => res.json())
         .then(response => {
           seturlPdf(response.data)
           setData(response.data)
         })
+     else
+      fetch(`${REACT_APP_API_AURA_ANALYZER}api/azure/buscarhospital`, {
+        method: 'POST',
+        body:  JSON.stringify({ hospital: window.sessionStorage.getItem('hospital') }),
+        headers:{
+          'Content-Type': 'application/json'
+        }})
+          .then(res => res.json())
+          .then(response => {
+            seturlPdf(response.data)
+            setData(response.data)
+          })
   }, [])
 
-  
-  
   const Filter = (e) => {
     const { value } = e.target
     const filter = urlPdf.filter(item => item.label.toLowerCase().includes(value.toLowerCase()))
     setData(filter)
   }
-
 
   const handleChange = date => {
     setStartDate(date)
@@ -52,7 +61,7 @@ function ListTests() {
       <Search>
         <form>
             <Input placeholder='Filtar por Label Paciente' required onChange={Filter}></Input>
-            <DatePicker selected={startDate} onChange={ handleChange } />           
+            <DatePicker selected={startDate} onChange={ handleChange } />
         </form>
       </Search>
       <Title>Todas las pruebas</Title>
@@ -66,12 +75,12 @@ function ListTests() {
         </thead>
         <tbody>
           {
-            data.map(pdf => 
+            data.map(pdf =>
               <tr key={pdf.label}>
                 <Td>{pdf.label}</Td>
-                <Td><Moment format="YYYY/MM/DD" >{pdf.fecha}</Moment></Td>
+                <Td key={pdf.label} ><Moment format="YYYY/MM/DD" >{pdf.fecha}</Moment></Td>
                 <Td>
-                    <Link secondary="true" to={{pathname:`/detail`, state:{label: pdf.label,hospital: pdf.hospital}}} >Ver</Link>
+                    <Link secondary="true" to={{pathname:`/detail`, state:{label: pdf.label,hospital: pdf.hospital}}} key={pdf.label}>Ver</Link>
                 </Td>
               </tr>
             )

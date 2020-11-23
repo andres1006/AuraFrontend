@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/673c5142-0f3d-423b-8e34-5789a0d1a26c/resourceGroups/ExternalTestingGroup/providers/Microsoft.Web/sites/aurafrontend",
+    "appService.deploySubpath": "."
+}
