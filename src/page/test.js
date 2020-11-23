@@ -15,7 +15,6 @@ function DetailTestPacient() {
     //   fetch(`${REACT_APP_API_AURA_SERVICES}api/azure/buscar/${label}/${hospital}`)
     //       .then(res => res.json())
     //       .then(response => {
-    //         console.log(response)
     //         seturlPdf(response.data)
     //       })
     // }, [])
@@ -30,9 +29,7 @@ function DetailTestPacient() {
       })
           .then(res => res.json())
           .then(response => {
-            console.log(response)
-              seturlPdf("https://externalstorageaccount.blob.core.windows.net/finalizadosbackup/HUCV/patologia_PRG-03611695M/paciente_PRG-03611695M/paciente_PRG-03611695M.pdf")
-           
+              seturlPdf(response.data.urlPdf)
           })
     }, [])
 
@@ -53,7 +50,7 @@ function DetailTestPacient() {
         })
           .then(res => res.json())
           .then(response => {
-                console.log(response)
+            console.log(response);
             })
     }
 
@@ -68,7 +65,7 @@ function DetailTestPacient() {
         return  <ViewerPdf url={urlPdf}></ViewerPdf>
       }else{
         setCargando("");
-        return <h1>Buscando Pdf .....</h1>
+        return <h1>la url del informe no es valido o el informe ha sido eliminado</h1>
       }
     }
 
@@ -76,12 +73,10 @@ function DetailTestPacient() {
     <Layout>
      {cargando}
       <Pdf />
-        <Search>
-        <form onSubmit={sendEmail}>
+{/*         <Search>
             <Input placeholder='Email' value={email} required type="email" onChange={getEmail}></Input>
-            <Button primary type="submit">Enviar</Button>
-        </form>
-      </Search>
+            <Button primary type="button" onClick={sendEmail}>Enviar</Button>
+      </Search> */}
     </Layout>
   );
 }

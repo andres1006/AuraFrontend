@@ -8,9 +8,6 @@ const { REACT_APP_OSCANN_FRONTEND, REACT_APP_API_AURA_SERVICES } = process.env;
   const [ password, setPassword ] = useState('');
   const [ email, setEmail ] = useState('');
 
-  useEffect(() => {
-  }, [])
-  
 
 
 
