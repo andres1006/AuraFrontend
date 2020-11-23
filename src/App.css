@@ -39,7 +39,8 @@
 }
 
 .logo{
-  max-width: 300px;
+  max-width: 20em;
+  margin-bottom: 30px;
 }
 
 .login-label-user, .login-label-pass{

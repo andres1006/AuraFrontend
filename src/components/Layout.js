@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components'
 
-const { REACT_APP_OSCANN_ANALYZER } = process.env;
+const { REACT_APP_OSCANN_FRONTEND } = process.env;
 
 const Wrapper = styled.div`
   display: grid;
@@ -49,7 +49,7 @@ const MenuItem = styled.li`
 `
 const cerrarSesion = () => {
   window.sessionStorage.clear();
-  window.location.href = `${REACT_APP_OSCANN_ANALYZER}`;
+  window.location.href = `${REACT_APP_OSCANN_FRONTEND}/`;
 }
 
 export const Layout = ({ children }) => (

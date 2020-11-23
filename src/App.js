@@ -15,7 +15,7 @@ function App() {
           window.sessionStorage.getItem('login') === 'true' ? (
             <ListTests/>
           ) : (
-            <Login/>
+            <Redirect to="/" /> 
           )
         )}/>
 
@@ -23,7 +23,7 @@ function App() {
           window.sessionStorage.getItem('login') === 'true' ? (
             <DetailTestPacient/>
           ) : (
-            <Login/>
+            <Redirect to="/" /> 
           )
         )}/>
 
@@ -31,7 +31,7 @@ function App() {
           window.sessionStorage.getItem('login') === 'true' ? (
             <ListLogs/>
           ) : (
-            <Login/>
+            <Redirect to="/" /> 
           )
         )}/>
 

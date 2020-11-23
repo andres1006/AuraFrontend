@@ -1,29 +1,31 @@
-import React, { Component } from 'react'
+import React, { useEffect , useState } from 'react'
 
-const { REACT_APP_OSCANN_ANALYZER, REACT_APP_API_AURA_SERVICES } = process.env;
+const { REACT_APP_OSCANN_FRONTEND, REACT_APP_API_AURA_SERVICES } = process.env;
 
-class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      Email: '',
-      Password: '',
-      // isAdmin: false,
-    }
-    this.Password = this.Password.bind(this);
-    this.Email = this.Email.bind(this);
-    this.login = this.login.bind(this);
+ const Login = () =>  {
+  const [ btnDisabled, setBtnDisabled ] = useState('');
+  const [ nameBtn, setNameBtn ] = useState("Ingresar");
+  const [ password, setPassword ] = useState('');
+  const [ email, setEmail ] = useState('');
+
+  useEffect(() => {
+  }, [])
+  
+
+
+
+  const handleEmail = (event) => {
+    setEmail(event.target.value)
   }
 
-  Email(event) {
-    this.setState({ Email: event.target.value })
+  const hanldePassword = (event) => {
+    setPassword(event.target.value)
   }
 
-  Password(event) {
-    this.setState({ Password: event.target.value })
-  }
-
-  login() {
+  const login = () => {
+    setBtnDisabled(true);
+    setNameBtn("Cargando...")
+    console.log(`email ${email}, password ${password}`);
     window.sessionStorage.clear();
     fetch(`${REACT_APP_API_AURA_SERVICES}api/user/autenticar`, {
       method: 'post',
@@ -32,35 +34,40 @@ class Login extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        correo: this.state.Email,
-        contrasenia: this.state.Password
+        correo: email,
+        contrasenia: password
       })
     }).then((Response) => Response.json())
-      .then((result) => {
-        if (result.message === `No existe el usuario: ${this.state.Email}`)
+    .then((result) => {
+        console.log("peticion", result);
+        if (result.message === `No existe el usuario: ${email}`){
           alert('Usuario Invalido');
-        else
+          setBtnDisabled(false);
+          setNameBtn("Ingresar")
+        }
+        else{
           window.sessionStorage.setItem('admin', result.user.admin);
           window.sessionStorage.setItem('usuario', result.user.usuario);
           window.sessionStorage.setItem('hospital', result.user.hospital);
           window.sessionStorage.setItem('login', 'true');
-          window.location.href = `${REACT_APP_OSCANN_ANALYZER}/reports`;
+          setBtnDisabled(false);
+          setNameBtn("Ingresar")
+          window.location.href = `${REACT_APP_OSCANN_FRONTEND}/reports`;
+        }
       })
   }
 
-  render() {
     return (
-
       <div className="content">
         <div className="login">
-          <div className="logo">
-            <img src="https://externalstorageaccount.blob.core.windows.net/recursos/img/auralogo.png" alt="logo" />
+          <div >
+            <img src="https://externalstorageaccount.blob.core.windows.net/recursos/img/auralogo.png" alt="logo" className="logo"/>
           </div>
           <div className="user">
             <label className="login-label-user" ><b>Usuario</b></label>
             <br />
             <input
-              onChange={this.Email}
+              onChange={handleEmail}
               className="login-input"
               type="text"
               placeholder="Ingrese su correo electronico"
@@ -72,7 +79,7 @@ class Login extends Component {
             <label className="login-label-pass" ><b>Contraseña</b></label>
             <br />
             <input
-              onChange={this.Password}
+              onChange={hanldePassword}
               className="login-input"
               type="password"
               placeholder="Ingrese su Contraseña"
@@ -80,8 +87,8 @@ class Login extends Component {
             />
           </div>
 
-          <button onClick={this.login} className="btn-login" type="submit">
-            Ingresar
+          <button onClick={login} className="btn-login" type="button" disabled={btnDisabled}>
+              {nameBtn}
         </button>
           <br />
           {/* <div className="btn-forgot-pass" >
@@ -90,7 +97,6 @@ class Login extends Component {
         </div>
       </div>
     );
-  }
 }
 
 export default Login;

@@ -78,9 +78,9 @@ function ListTests() {
             data.map(pdf =>
               <tr key={pdf.label}>
                 <Td>{pdf.label}</Td>
-                <Td><Moment format="YYYY/MM/DD" >{pdf.fecha}</Moment></Td>
+                <Td key={pdf.label} ><Moment format="YYYY/MM/DD" >{pdf.fecha}</Moment></Td>
                 <Td>
-                    <Link secondary="true" to={{pathname:`/detail`, state:{label: pdf.label,hospital: pdf.hospital}}} >Ver</Link>
+                    <Link secondary="true" to={{pathname:`/detail`, state:{label: pdf.label,hospital: pdf.hospital}}} key={pdf.label}>Ver</Link>
                 </Td>
               </tr>
             )
