@@ -75,7 +75,7 @@ function ListLogs() {
         <tbody>
           {
             data.map(log =>
-              <tr key={dataLogs.label}>
+              <tr key={"a"+dataLogs.label}>
                 <Td>{log.label}</Td>
                 <Td>{log.nombreProceso}</Td>
                 <Td>{log.estadoProceso}</Td>

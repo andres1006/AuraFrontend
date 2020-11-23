@@ -47,6 +47,12 @@ const MenuItem = styled.li`
   color: #ffffff;
   font-weight: bold;
 `
+const TitleMenu = styled.h1`
+
+  font-size: 30px;
+  color: #ffffff;
+  font-weight: bold;
+`
 const cerrarSesion = () => {
   window.sessionStorage.clear();
   window.location.href = `${REACT_APP_OSCANN_FRONTEND}/`;
@@ -64,7 +70,7 @@ export const Layout = ({ children }) => (
       <SideBar>
         <Logo src="https://externalstorageaccount.blob.core.windows.net/recursos/img/auralogo.png" alt="logo" />
         <Menu>
-          <MenuItem>Menu</MenuItem>
+          <TitleMenu>Menu</TitleMenu>
           <NavLink exact activeClassName='current' to="/reports">
             <MenuItem>
               Reportes
